@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %}</title>
+	<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-sm-left">
+			<div class="col-sm-2">
+				<div class="list-group">
+					<a href="{% url 'index' %}"" class="list-group-item list-group-item-action">Home</a>
+					<a href="{% url 'monsters' %}" class="list-group-item list-group-item-action">Monsters</a>
+					<a href="{% url 'items' %}" class="list-group-item list-group-item-action">Items</a>
+					<a href="{% url 'weapons' %}" class="list-group-item list-group-item-action">Weapons</a>
+					<a href="{% url 'armors' %}" class="list-group-item list-group-item-action">Armor</a>
+					<a href="{% url 'zones' %}" class="list-group-item list-group-item-action">Zones</a>
+				</div>
+			</div>
+			<div class="col-sm-auto">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

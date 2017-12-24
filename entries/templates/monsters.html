@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Monster List</h1>
+	{% if monster_list %}
+	<ul>
+		{% for monster in monster_list %}
+		<li>
+			<a href="#">{{ monster.name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		<p>No monsters</p>
+	{% endif %}
+{% endblock %}
