@@ -4,7 +4,11 @@ from django.db import models
 class Zone(models.Model):
     name = models.CharField(max_length=50)
     #image = models.ImageField(blank=True)
+    num_camps = models.IntegerField(default=1)
     description = models.TextField(max_length=2048)
+
+    def __str__(self):
+        return self.name
 
 
 class Monster(models.Model):
@@ -15,6 +19,9 @@ class Monster(models.Model):
     weakness = models.IntegerField()
     resistances = models.IntegerField()
     description = models.TextField(max_length=2048)
+
+    def __str__(self):
+        return self.name
 
 
 class Item(models.Model):
@@ -38,6 +45,9 @@ class Item(models.Model):
     buy_value = models.IntegerField(default=1)
     zones = models.ManyToManyField(Zone)
     description = models.TextField(max_length=2048)
+   
+    def __str__(self):
+        return self.name
 
 
 class Weapon(models.Model):
@@ -68,6 +78,9 @@ class Weapon(models.Model):
     defense = models.IntegerField(default=0)
     description = models.TextField(max_length=2048)
 
+    def __str__(self):
+        return self.name
+
 
 class Armor(models.Model):
     ARMOR_CLASSES = (
@@ -92,6 +105,9 @@ class Armor(models.Model):
     dragon = models.IntegerField(default=0)
     description = models.TextField(max_length=2048)
 
+    def __str__(self):
+        return self.name
+
 
 class Mantle(models.Model):
     name = models.CharField(max_length=50)
@@ -99,3 +115,84 @@ class Mantle(models.Model):
     duration = models.IntegerField()
     recharge = models.IntegerField()
     description = models.TextField(max_length=1024)
+
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    SKILL_LIST = (
+        ('AB', 'Attack Boost'),
+        ('AD', 'Adrenaline'),
+        ('AE', 'Aquatic Expert'),
+        ('AS', 'Affinity Sliding'),
+        ('Art', 'Artillery'),
+        ('BBQ', 'BBQ Master'),
+        ('BO', 'Botanist'),
+        ('CH', 'Cliffhanger'),
+        ('Con', 'Constitution'),
+        ('DA', 'Dragon Attack'),
+        ('DB', 'Defense Boost'),
+        ('EE', 'Evade Extender'),
+        ('Ent', 'Entomologist'),
+        ('EW', 'Evade Window'),
+        ('FA', 'Fire Attack'),
+        ('Foc', 'Focus'),
+        ('For', 'Fortify'),
+        ('FR', 'Fire Resistance'),
+        ('Grd', 'Guard'),
+        ('HB', 'Health Boost'),
+        ('HH', 'Honey Hunter'),
+        ('HM', 'Horn Maestro'),
+        ('HR', 'Hunger Resistance'),
+        ('IA', 'Ice Attack'),
+        ('Int', 'Intimidator'),
+        ('IP', 'Item Prolonger'),
+        ('IR', 'Ice Resistance'),
+        ('JM', 'Jump Master'),
+        ('MG', 'Master Gatherer'),
+        ('MM', 'Master Mounter'),
+        ('MR', 'Muck Resistance'),
+        ('MaR', 'Marathon Runner'),
+        ('Pal', 'Palico Rally'),
+        ('PR', 'Paralysis Resistance'),
+        ('PoR', 'Poison Resistance'),
+        ('PT', 'Pro Transporter'),
+        ('QS', 'Quick Shealth'),
+        ('RS', 'Recovery Speed'),
+        ('RU', 'Recovery Up'),
+        ('SAB', 'Special Ammo Boost'),
+        ('Sce', 'Scenthound'),
+        ('SC', 'Slinger Capacity'),
+        ('SpC', 'Speed Crawler'),
+        ('SE', 'Speed Eating'),
+        ('SpE', 'Sporepuff Expert'),
+        ('Sl', 'Slugger'),
+        ('SR', 'Stun Resistance'),
+        ('SRU', 'Scoutfly Range Up'),
+        ('SS', 'Stamina SurgeAttack Boost'),
+        ('SpS', 'Speed Sharpening'),
+        ('ST', 'Stamina Thief'),
+        ('Stl', 'Stealth'),
+        ('TA', 'Thunder Attack'),
+        ('TR', 'Thunder Resistance'),
+        ('WA', 'Water Attack'),
+        ('Wi', 'Windproof'),
+        ('WR', 'Water Resistance'),
+        )
+
+    SKILL_TYPES = (
+        ('B', 'Basic'),
+        ('SB', 'Set Bonus'),
+        ('Tog', 'Toggle'),
+        )
+
+    name = models.CharField(max_length=3, choices=SKILL_LIST)
+    description = models.CharField(max_length=100)
+    category = models.CharField(max_length=3, choices=SKILL_TYPES)
+    max_rank = models.IntegerField(default=7)
+    growth = models.TextField(max_length=1024)
+    affixed_to = models.ManyToManyField(Armor, blank=True)
+
+    def __str__(self):
+        return self.name
