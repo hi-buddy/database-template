@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
+{% load category_filter %}
 
 {% block content %}
 	<h1>Weapon List</h1>
 	{% if weapon_list %}
 	<ul>
-		{% for weapon in weapon_list %}
-		<li>
-			<a href="#">{{ weapon.name }}</a>
-		</li>
+		{% for category in categories %}
+			<li>{{ category }}</li>
+			{% for weapon in weapon_list %}
+				{% filter in_category:Greatsword %}
+					<li>{{ weapon.name }}</li>
+				{% endfilter %}
+			{% endfor %}
 		{% endfor %}
 	</ul>
 	{% else %}

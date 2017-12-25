@@ -19,8 +19,10 @@ class Monster(models.Model):
 
 class Item(models.Model):
     ITEM_TYPES = (
-        ('Mats', 'Materials'),
-        ('Loot', 'Loot'),
+        ('Mats', 'Crafting'),
+        ('Carve', 'Carving'),
+        ('Weap', 'Weapon'),
+        ('Armor', 'Armor'),
         ('Other', 'Other'),
         )
     name = models.CharField(max_length=24)
@@ -64,6 +66,7 @@ class Weapon(models.Model):
     element = models.IntegerField(default=0)
     decorations = models.IntegerField(default=0)
     defense = models.IntegerField(default=0)
+    description = models.TextField(max_length=2048)
 
 
 class Armor(models.Model):
@@ -87,6 +90,7 @@ class Armor(models.Model):
     lightning = models.IntegerField(default=0)
     ice = models.IntegerField(default=0)
     dragon = models.IntegerField(default=0)
+    description = models.TextField(max_length=2048)
 
 
 class Mantle(models.Model):

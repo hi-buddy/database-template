@@ -18,9 +18,6 @@ from . import views, models
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('monsters', views.MonsterListView.as_view(), name='monsters'),
-    path('items', views.ItemListView.as_view(), name='items'),
-    path('weapons', views.WeaponListView.as_view(), name='weapons'),
-    path('armors', views.ArmorListView.as_view(), name='armors'), 
-    path('zones', views.ZoneListView.as_view(), name='zones'),
+    path('<category>', views.category_view, name='category_view'),
+    path('<category>/<query>', views.detail_view, name='detail_view'),
 ]
