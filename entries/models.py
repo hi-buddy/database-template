@@ -33,18 +33,19 @@ class Item(models.Model):
         ('Other', 'Other'),
         )
     name = models.CharField(max_length=24)
+    rarity = models.IntegerField(default=1)
     category = models.CharField(max_length=5, choices=ITEM_TYPES)
     #image = models.ImageField(blank=True)
-    mats_req = models.ManyToManyField('self', blank=True)
+    mats_req = models.CharField(max_length=1024, blank=True, default='')
     drop_from = models.ManyToManyField(Monster, blank=True)
-    drop_chance = models.IntegerField()
+    drop_chance = models.IntegerField(default=100)
     gather_quant = models.IntegerField(default=1)
     carve_spot = models.CharField(max_length=24, blank=True)
     stack_size = models.IntegerField(default=1)
     sell_value = models.IntegerField(default=1)
     buy_value = models.IntegerField(default=1)
-    zones = models.ManyToManyField(Zone)
-    description = models.TextField(max_length=2048)
+    zones = models.ManyToManyField(Zone, blank=True)
+    description = models.TextField(max_length=2048, blank=True)
    
     def __str__(self):
         return self.name

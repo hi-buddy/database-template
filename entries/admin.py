@@ -7,8 +7,8 @@ class ArmorAdmin(admin.ModelAdmin):
 
 
 class ItemAdmin(admin.ModelAdmin):
-	list_display = ['name', 'category']
-	ordering = ['name', 'category']
+	list_display = ['name', 'rarity', 'category']
+	ordering = ['name', 'category', 'rarity']
 
 
 class MonsterAdmin(admin.ModelAdmin):
